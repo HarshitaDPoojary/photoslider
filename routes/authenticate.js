@@ -31,6 +31,10 @@ const router=express.Router();
 // router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/register',upload.single('file'),userController.create);
+router.post('/login',upload.none(),userController.login);
+router.post('/',(res,req)=>{
+    res.send("welcome");
+});
 
 
 
