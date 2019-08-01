@@ -313,3 +313,38 @@ router.post('/updatePassword',verifyToken ,upload.none(), async (req,res)=>{
     });
 });
 
+router.get('/logout',verifyToken ,upload.none(), (req,res)=>{
+    jwt.verify(req.token, 'HelloAlbumProject170619' ,(err, data)=>{
+        if(err) {
+            res.status(403).send("the token is invalid or expired"); 
+        }
+        else{
+            console.log(req.body);
+            User.updateOne({ emailid: data.user1.emailid }, { $set: { firstname: req.body.firstname, lastname:req.body.lastname } })
+            .then(user => {
+                
+                jwtBlacklist.blacklist(req.token);
+                res.json({"message":"Logout successful"});
+            
+                
+            })
+           .catch(err=>{
+               res.send(err);
+           });
+        }
+    });
+});
+
+function verifyToken(req, res, next) {
+    // console.log(req.headers['auth']);
+    const header = req.headers['auth'];
+    // console.log(header);
+    if(typeof header !== 'undefined') {
+      req.token = header;
+      next();
+    } else {
+        res.status(403).send('Bad Requeset');
+    }
+  }
+
+  module.exports = router;
