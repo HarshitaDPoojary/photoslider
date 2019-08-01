@@ -1,0 +1,9 @@
+const User = require('../models/user.model.js');
+const express = require('express');
+const bcrypt = require('bcrypt');
+const fs = require('fs');
+const saltRounds = 10;
+const path= require('path');
+const jwt = require('jsonwebtoken');
+const Joi=require('joi');
+const schema= require('../models/joi.model');
