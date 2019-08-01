@@ -85,3 +85,39 @@ exports.create = async(req, res) => {
         
     });
 };
+
+
+exports.login=async(req,res)=>
+{
+
+    let user = await User.findOne({emailid: req.body.emailid},{firstname:1,lastname:1,emailid:1,password:1});
+    let user1={
+        firstname:user.firstname,
+        lastname:user.lastname,
+        emailid:user.emailid
+    }
+    bcrypt.compare(req.body.password, user.password,(err, result) =>{
+        if (result == true) {
+            jwt.sign({user1},"HelloAlbumProject170619",  { expiresIn: '3000s' } ,(e, token) => {
+                if(e)
+                {
+                    res.status(403).send('Bad request');
+                }
+                res.json({token:token});
+               
+                
+            });
+        } else {
+         console.log('Incorrect password');
+         res.send('Invalid credentials');
+         
+        }
+    });
+    
+       
+    //  process.exit();
+}
+
+
+
+

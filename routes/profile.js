@@ -61,6 +61,9 @@ router.get('/',verifyToken , (req,res)=>{
     // process.exit();
 });
 
+<<<<<<< HEAD
+
+=======
 router.get('/update',verifyToken , (req,res)=>{
     console.log("in user");
     jwt.verify(req.token, 'HelloAlbumProject170619' ,(err, data)=>{
@@ -103,3 +106,4 @@ router.get('/updatePassword',verifyToken,upload.single('file'),async(req,res)=>{
      });
      
  });
+>>>>>>> b9ff74f93b6b4547e3695a7d18b0d2a4e6aad711
