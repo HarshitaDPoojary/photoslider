@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=Title%></title>
+</head>
+<body>
+    <main>
+            <h3>Welcome  <%=user.firstname%> <%=user.lastname%></h3>
+            <br>
+            <%if (user.img){%>
+            <% img= new Buffer(user.img).toString('base64');%>
+    
+            <img src="data:image/jpg;base64,<%- img %>" alt="<%= user.emailid %>" height="230" width="250">
+           
+            <hr>
+            <%}else{%>
+                <br>
+                <h3>Email  <%=user.emailid%> </h3>
+    <%}%>
+<a href="/user/update">Update Personal Details</a>
+&Tab;&nbsp;&Tab;&nbsp;
+<a href="/user/updatePassword">Update Password</a>&Tab;&nbsp;&Tab;&nbsp;
+
+<a href="/user/updateImg">Update Profile Pic</a>&Tab;&nbsp;&Tab;&nbsp;
+<a href="/user/logout">Logout</a>
+
+<br>
+<br>
+<a href="/post/getMyPosts">View My Posts</a>
+
+
+</main>
+</body>
+</html>
