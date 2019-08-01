@@ -138,11 +138,11 @@ router.get('/removeImg',verifyToken,async(req,res)=>{
             })
             .catch(err=>{
                 res.send(err);
-            })
-    
-                        
+            })  
         }
     });
+
+
 
 })
 
