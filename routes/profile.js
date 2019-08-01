@@ -103,3 +103,46 @@ router.get('/updatePassword',verifyToken,upload.single('file'),async(req,res)=>{
      });
      
  });
+
+ router.get('/updateImg',verifyToken,upload.single('file'),async(req,res)=>{
+    jwt.verify(req.token, 'HelloAlbumProject170619' ,(err, data)=>{
+        if(err) {
+            res.status(403).send("the token is invalid or expired");  
+        }
+        else{
+            User.findOne({emailid: data.user1.emailid}).then(user => {
+                res.render('update-profileimage',{
+                     user: user,
+                     pageTitle: 'Change Dp'
+                   });
+                 console.log(user.emailid);
+             })
+            .catch(err=>{
+                res.send(err);
+            });
+         }
+     });
+     
+ });
+
+router.get('/removeImg',verifyToken,async(req,res)=>{
+    jwt.verify(req.token, 'HelloAlbumProject170619' ,(err, data)=>{
+        if(err) {
+            res.status(403).send("the token is invalid or expired");  
+        }
+        else{
+
+            User.updateOne({ emailid: data.user1.emailid }, { $unset: { contentType: 1, img:1 } })
+            .then(user => {
+                res.json({messsage: "Profile pic removed"});
+            })
+            .catch(err=>{
+                res.send(err);
+            })  
+        }
+    });
+
+
+
+})
+
