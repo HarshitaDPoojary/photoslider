@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=pageTitle%></title>
+</head>
+<body>
+    <main>
+        <form class="product-form" action="/user/update" method="POST">
+            <div class="form-control">
+                <label for="firstname">Firstname</label>
+                <input type="text" name="firstname" id="firstname" value="<%=user.firstname%>">
+            </div>
+            <div class="form-control">
+                <label for="lastname">Lastname</label>
+                <input type="text" name="lastname" id="lastname" value="<%=user.lastname%>">
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+</body>
+</html>
