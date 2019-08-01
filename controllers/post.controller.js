@@ -94,3 +94,31 @@ exports.getMyPost=async(req, res) => {
         }
     });
 }
+
+
+exports.getAllPost=async(req, res) => {
+    console.log("In get all posts of user with email "+req.params.emailid);
+    jwt.verify(req.token, 'HelloAlbumProject170619' , async(err, data)=>{
+        if(err) {
+            console.log(err);
+            res.status(403).send("the token is invalid or expired"); 
+        }
+        else{
+            User.findOne({emailid: req.params.emailid}).then(user=> {
+                Post.find({ownerid: user._id}).then(posts=>{
+                    console.log(posts);
+                    res.render('get-my-posts',{ posts : posts, pageTitle: "others posts"});
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+
+
+            })
+            .catch(err=> res.json({message:"No user with specified image"}));
+            
+
+
+        }
+    });
+}
