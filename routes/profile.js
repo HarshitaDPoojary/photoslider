@@ -248,3 +248,68 @@ router.post('/updateImg',verifyToken,upload.single('file'),async(req,res)=>{
 
 })
 
+router.post('/updatePassword',verifyToken ,upload.none(), async (req,res)=>{
+    jwt.verify(req.token, 'HelloAlbumProject170619' ,(err, data)=>{
+        if(err) {
+            res.status(403).send("the token is invalid or expired");  
+        }
+        else{
+            console.log(req.body.password);
+            console.log(data.user1.emailid);
+            User.findOne({emailid: data.user1.emailid}).then(user=>
+            {
+                // console.log(user.emailid);
+
+                bcrypt.compare(req.body.password, user.password,(err, result) =>{
+                    if (result == true) {
+                        var password=req.body.newpassword;
+                        var salt = bcrypt.genSaltSync(saltRounds);
+                        var hash = bcrypt.hashSync(password, salt);
+                        User.updateOne({ emailid: data.user1.emailid }, { $set: { password: hash} }).then(user => {
+                            let emailid=data.user1.emailid;
+                           
+                            
+            
+                         user1={
+                            firstname:data.user1.firstname,
+                            lastname:data.user1.lastname,
+                            emailid:emailid
+                            }
+                            jwtBlacklist.blacklist(req.token);
+                        
+                            jwt.sign({user1},"HelloAlbumProject170619",  { expiresIn: '3000s' } ,(e, token) => {
+                                if(e)
+                                {
+                                    res.status(403).send('Bad request');
+                                }
+                                res.json({"message":"new password set","newtoken":token});
+                                console.log(token);
+                        
+                                
+                            });
+                            
+                        })
+                       .catch(err=>{
+                           res.send(err);
+                       });
+                       
+
+
+                    } else {
+                     console.log("Old password doesn/'t match");
+                     res.send("Old Password doesn/'t match");
+                     
+                    }
+                });
+            }    
+
+            )
+            .catch(err=>{
+                res.send(err);
+            }
+               )
+
+        }
+    });
+});
+
