@@ -67,3 +67,30 @@ exports.create = async(req, res) => {
         }
  });  
 };
+
+exports.getMyPost=async(req, res) => {
+    console.log("hello");
+    jwt.verify(req.token, 'HelloAlbumProject170619' , async(err, data)=>{
+        if(err) {
+            console.log(err);
+            res.status(403).send("the token is invalid or expired"); 
+        }
+        else{
+            User.findOne({emailid: data.user1.emailid}).then(user=> {
+                Post.find({ownerid: user._id}).then(posts=>{
+                    console.log(posts);
+                    res.render('get-my-posts',{ posts : posts, pageTitle: "my posts"});
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+
+
+            })
+            .catch(err=> res.json({message:"Some internal error occured"}));
+            
+
+
+        }
+    });
+}
