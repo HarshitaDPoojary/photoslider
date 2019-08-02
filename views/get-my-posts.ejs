@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=pageTitle%></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+        <% if (posts.length > 0) { %>
+            
+           <% for (var i = 0; i < posts.length; i++) { console.log(posts[i]);%>
+            <h1>Post <%=(i+1)%></h1>
+
+            <h3>Title : <%=posts[i].title%></h3>
+            <br>
+            
+            <% img= new Buffer(posts[i].img).toString('base64');%>
+
+            <img src="data:image/jpg;base64,<%- img %>" alt="<%= posts[i].title %>"  width="42%">
+            <br>
+            <h4>Caption :</h4><%=posts[i].caption%>
+            <br>
+            <hr>
+
+            <%}} else {%>
+                <h1> No Posts uploaded</h1>
+           <%}%>
+
+           <input type="hidden" id="refresh" value="no">
+</body>
+<script type="text/javascript">
+    onload=function(){
+    if(!!window.performance && window.performance.navigation.type === 2)
+    {
+        console.log('Reloading');
+        window.location.reload();
+    }}
+    </script>
+</html>
