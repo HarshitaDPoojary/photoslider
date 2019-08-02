@@ -2,7 +2,7 @@ const express = require('express');
 var formidable=require('express-formidable');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-const imageFilter=require('../filter');
+
 
 var multer = require('multer');
 var storage = multer.diskStorage(
