@@ -14,4 +14,4 @@ An application with CRUD operations for posts along with authentication using No
 ## Additional feature
 * Uses [JWT](https://jwt.io/) token for session management
 * Uses [Mongoose model](https://www.npmjs.com/package/mongoose) for connection with mongo
-* Uses [joi vlidator](https://www.npmjs.com/package/joi) for form validation in request params sent in api
+* Uses [joi validator](https://www.npmjs.com/package/joi) for form validation in request params sent in api
