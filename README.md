@@ -11,7 +11,7 @@ An application with CRUD operations for posts along with authentication using No
 * Delete post
 * View all posts
 
-## Additional features
-* Uses JWT token for session management : https://jwt.io/
-* Uses Mongoose model for connection with mongo : https://www.npmjs.com/package/mongoose
-* Uses joi vlidator for form validation in request params sent in api : https://www.npmjs.com/package/joi
+## Additional feature
+* Uses [JWT](https://jwt.io/) token for session management
+* Uses [Mongoose model](https://www.npmjs.com/package/mongoose) for connection with mongo
+* Uses [joi vlidator](https://www.npmjs.com/package/joi) for form validation in request params sent in api
