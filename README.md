@@ -22,3 +22,4 @@ An application with CRUD operations for posts along with authentication using No
 * Clone the repository using git clone https://github.com/HarshitaDPoojary/photoslider.git
 * Go to the directory of the project in terminal, do npm install
 * Then you can start the project using node server.js
+(Note: you can use Postman to view all request and response processing)
