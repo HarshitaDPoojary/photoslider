@@ -6,10 +6,13 @@ An application with CRUD operations for posts along with authentication using No
 ## APIs:
 * Register
 * Login
+* Update Profile
+* Change Password
 * Add post
 * Update post
 * Delete post
 * View all posts
+
 
 ## Additional feature
 * Uses [JWT](https://jwt.io/) token for session management
